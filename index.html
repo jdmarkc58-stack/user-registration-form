@@ -4,81 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>User Registration</title>
+  <title>Create Your Account</title>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
+      margin: 0;
+      padding: 20px;
       font-family: Arial, sans-serif;
       background: #f0f2f5;
       color: #1c1e21;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
     }
 
     .container {
       width: 100%;
-      max-width: 420px;
+      max-width: 430px;
+      margin: 35px auto;
     }
 
-    .header {
+    .heading {
       text-align: center;
       margin-bottom: 22px;
     }
 
-    .header h1 {
+    .heading h1 {
       color: #1877f2;
-      font-size: 32px;
+      font-size: 34px;
       margin-bottom: 8px;
     }
 
-    .header p {
-      font-size: 15px;
+    .heading p {
       color: #606770;
+      font-size: 15px;
     }
 
-    .form-card {
+    .card {
       background: white;
       padding: 25px;
       border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
     }
 
-    .form-card h2 {
-      font-size: 23px;
-      margin-bottom: 8px;
+    h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
     }
 
-    .subtitle {
+    .description {
       color: #606770;
-      font-size: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       line-height: 1.5;
     }
 
     label {
       display: block;
-      font-size: 14px;
       font-weight: bold;
-      margin-bottom: 7px;
+      font-size: 14px;
+      margin: 15px 0 7px;
     }
 
     input {
+      display: block;
       width: 100%;
       padding: 13px;
       border: 1px solid #ccd0d5;
       border-radius: 7px;
-      font-size: 15px;
-      margin-bottom: 16px;
-      background: #fff;
+      font-size: 16px;
     }
 
     input:focus {
@@ -86,45 +80,51 @@
       border-color: transparent;
     }
 
-    .notice {
-      background: #f5f8ff;
-      border-radius: 6px;
-      padding: 12px;
-      font-size: 13px;
-      color: #444;
-      line-height: 1.5;
-      margin-bottom: 18px;
-    }
-
     button {
       width: 100%;
-      background: #1877f2;
-      color: white;
+      margin-top: 22px;
+      padding: 14px;
       border: none;
       border-radius: 7px;
-      padding: 14px;
+      background: #1877f2;
+      color: white;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    button:hover {
-      background: #166fe5;
+    button:disabled {
+      background: #7daef5;
+      cursor: not-allowed;
     }
 
     #message {
-      margin-top: 16px;
-      font-size: 14px;
+      display: none;
+      padding: 13px;
+      margin-top: 18px;
+      border-radius: 7px;
       line-height: 1.5;
-      text-align: center;
+      font-size: 14px;
     }
 
-    .footer {
-      text-align: center;
-      font-size: 12px;
+    .success {
+      display: block !important;
+      background: #e6f4ea;
+      color: #176b35;
+    }
+
+    .error {
+      display: block !important;
+      background: #fce8e6;
+      color: #b3261e;
+    }
+
+    .note {
+      margin-top: 18px;
       color: #606770;
-      margin-top: 20px;
+      font-size: 12px;
       line-height: 1.6;
+      text-align: center;
     }
   </style>
 </head>
@@ -133,17 +133,17 @@
 
   <main class="container">
 
-    <header class="header">
+    <header class="heading">
       <h1>Registration</h1>
-      <p>Create your own account</p>
+      <p>Create an account for this service</p>
     </header>
 
-    <section class="form-card">
+    <section class="card">
 
-      <h2>Create an account</h2>
+      <h2>Create account</h2>
 
-      <p class="subtitle">
-        Complete the form below to register.
+      <p class="description">
+        Complete the form below to continue.
       </p>
 
       <form id="registrationForm">
@@ -173,88 +173,65 @@
           type="email"
           id="email"
           name="email"
-          placeholder="Enter your email address"
+          placeholder="Enter your email"
           autocomplete="email"
           required
         >
 
-        <label for="password">Create a password</label>
+        <label for="password">Create a new password</label>
         <input
           type="password"
           id="password"
           name="password"
-          placeholder="Create a password"
-          autocomplete="new-password"
+          placeholder="Create a new password"
           minlength="8"
+          autocomplete="new-password"
           required
         >
 
-        <label for="confirmPassword">Confirm password</label>
+        <label for="confirmPassword">Confirm new password</label>
         <input
           type="password"
           id="confirmPassword"
           name="confirmPassword"
-          placeholder="Enter your password again"
-          autocomplete="new-password"
+          placeholder="Enter the password again"
           minlength="8"
+          autocomplete="new-password"
           required
         >
 
-        <div class="notice">
-          Create a new password for this service.
-          Do not enter your Facebook or other existing account password.
-          This demonstration form does not send or save your information.
-        </div>
+        <button type="submit" id="registerButton">
+          Register
+        </button>
 
-        <button type="submit">Register</button>
+        <div id="message" role="status" aria-live="polite"></div>
 
-        <p id="message" role="status" aria-live="polite"></p>
+      </form>
 
-      
-form.addEventListener("submit", function(event) {
+      <p class="note">
+        This is a demonstration registration form.
+        Do not enter passwords used for other accounts.
+        Your information will not be saved or sent anywhere.
+      </p>
+
     </section>
-
-    <footer class="footer">
-      Only submit information you consent to share.
-      <br>
-      Registration Form
-    </footer>
 
   </main>
 
   <script>
-  const form = document.getElementById("registrationForm");
-  const message = document.getElementById("message");
-
-  form.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    const password = document.getElementById("password").value;
-    const confirmPassword =
-      document.getElementById("confirmPassword").value;
-
-    if (password !== confirmPassword) {
-      message.textContent = "Your passwords do not match.";
-      message.style.color = "red";
-      return;
-    }
-
-    message.textContent =
-      "The form is working! However, registration has not been saved because a secure registration service has not been connected.";
-
-    message.style.color = "green";
-  });
-  </script>
     const form = document.getElementById("registrationForm");
     const message = document.getElementById("message");
 
     form.addEventListener("submit", function(event) {
       event.preventDefault();
+
+      message.className = "";
+      message.style.display = "none";
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
 
       const password =
         document.getElementById("password").value;
@@ -263,17 +240,19 @@ form.addEventListener("submit", function(event) {
         document.getElementById("confirmPassword").value;
 
       if (password !== confirmPassword) {
-        message.textContent = "The passwords do not match.";
-        message.style.color = "#b00020";
+        message.textContent =
+          "Your passwords do not match. Please try again.";
+
+        message.className = "error";
         return;
       }
 
       message.textContent =
-        "The form design is working, but registration has not been saved. A secure registration service must be connected before accounts can be created.";
+        "The form has been completed successfully. This is only a demonstration: your registration has not been saved. A secure registration service is required to create your account.";
 
-      message.style.color = "#1877f2";
+      message.className = "success";
     });
   </script>
 
 </body>
-  </html>
+          </html>
