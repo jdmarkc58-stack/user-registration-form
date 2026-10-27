@@ -223,6 +223,33 @@
   </main>
 
   <script>
+  const form = document.getElementById("registrationForm");
+  const message = document.getElementById("message");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const password = document.getElementById("password").value;
+    const confirmPassword =
+      document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      message.textContent = "Your passwords do not match.";
+      message.style.color = "red";
+      return;
+    }
+
+    message.textContent =
+      "The form is working! However, registration has not been saved because a secure registration service has not been connected.";
+
+    message.style.color = "green";
+  });
+  </script>
     const form = document.getElementById("registrationForm");
     const message = document.getElementById("message");
 
